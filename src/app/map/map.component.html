@@ -1,0 +1,5 @@
+<div class="controls">
+    <button id="runButton" [disabled]="isRunButtonDisabled" (click)="runSimulation()">{{ runButtonText }}</button>
+    <button id="stopButton" [disabled]="isStopButtonDisabled" (click)="stopSimulation()">Stop</button>
+</div>
+<div id="map"></div>

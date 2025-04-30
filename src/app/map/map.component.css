@@ -1,0 +1,36 @@
+#map {
+    position: absolute;
+    top: 60px;
+    bottom: 0;
+    width: 100%;
+}
+.controls {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    z-index: 1;
+    background: rgba(255, 255, 255, 0.9);
+    padding: 8px 12px;
+    border-radius: 4px;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    display: flex;
+    gap: 10px;
+}
+.controls button {
+    padding: 8px 15px;
+    cursor: pointer;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.controls button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+}
+.moving-marker {
+    width: 18px;
+    height: 18px;
+    background-color: #e63946;
+    border-radius: 50%;
+    border: 2px solid white;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.6);
+}
