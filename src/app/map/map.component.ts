@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, OnDestroy, OnInit } from '@angular/core';
 import mapboxgl from 'mapbox-gl';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-map',
@@ -20,7 +21,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
   runButtonText = 'Run Simulation';
 
   constructor() {
-      (mapboxgl as any).accessToken = 'VOTRE_CLE_MAPBOX'; // Remplacez par votre clé
+      (mapboxgl as any).accessToken = environment.mapboxAccessToken; // Remplacez par votre clé
   }
 
   ngOnInit(): void {}
@@ -54,7 +55,7 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
       this.map.addControl(new mapboxgl.NavigationControl());
 
       this.map.on('load', () => {
-          this.loadAndDisplayGPX('');
+          this.loadAndDisplayGPX('https://metapong.alwaysdata.net/gpx/2025_04_20_poses.gpx');
       });
 
       this.map.on('error', (e) => console.error('Mapbox error:', e));
