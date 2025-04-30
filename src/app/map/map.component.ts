@@ -96,8 +96,8 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         return;
     }
 
-    const startPoint: [number, number] = this.trackCoordinates[safeIndex];
-    const endPoint: [number, number] = this.trackCoordinates[safeIndex + 1];
+    const startPoint: number[] = this.trackCoordinates[safeIndex];
+    const endPoint: number[] = this.trackCoordinates[safeIndex + 1];
 
     let targetBearing = this.calculateBearing(startPoint, endPoint);
     if (
@@ -116,10 +116,10 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
         const markerElement = document.createElement('div');
         markerElement.className = 'moving-marker';
         this.movingMarker = new mapboxgl.Marker(markerElement)
-            .setLngLat(startPoint)
+            .setLngLat(startPoint as [number, number])
             .addTo(this.map);
     } else {
-        this.movingMarker.setLngLat(startPoint);
+        this.movingMarker.setLngLat(startPoint as [number, number]);
     }
 
     const progressCoordinates = this.trackCoordinates.slice(0, safeIndex + 1);
@@ -250,8 +250,11 @@ export class MapComponent implements OnInit, AfterViewInit, OnDestroy {
           );
 
           const bounds = this.trackCoordinates.reduce(
-              (bounds, coord) => bounds.extend(coord),
-              new mapboxgl.LngLatBounds(this.trackCoordinates[0], this.trackCoordinates[0])
+              (bounds, coord) => bounds.extend(coord as [number, number]),
+              new mapboxgl.LngLatBounds(
+                  this.trackCoordinates[0] as [number, number],
+                  this.trackCoordinates[0] as [number, number]
+              )
           );
           this.map.fitBounds(bounds, {
               padding: { top: 80, bottom: 40, left: 40, right: 40 }
